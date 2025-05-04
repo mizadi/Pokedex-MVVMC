@@ -1,0 +1,13 @@
+//
+//  Coordinator.swift
+//  Pokedex
+//
+//  Created by Adi Mizrahi on 04/05/2025.
+//
+
+import UIKit
+
+protocol Coordinator {
+    var navigationController: UINavigationController { get set }
+    func start()
+}
