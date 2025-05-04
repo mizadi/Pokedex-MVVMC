@@ -12,25 +12,6 @@ A simple Pokedex app built with UIKit + MVVM architecture. It uses Swift, async/
 - ✅ Simple UI with Storyboards
 - ✅ Error handling + fallback when network fails
 
-## 📂 Structure
-Pokedex/
-├── Models/
-│ └── PokemonDetails.swift
-├── Networking/
-│ └── PokemonApiService.swift
-├── Caching/
-│ └── PokemonCache.swift
-│ └── FilePokemonCache.swift
-├── ViewModels/
-│ ├── PokemonListViewModel.swift
-│ └── PokemonDetailsViewModel.swift
-├── Views/
-│ ├── PokemonListViewController.swift
-│ └── PokemonDetailsViewController.swift
-├── Cells/
-│ └── PokemonCell.swift
-
-
 ## 💡 How it works
 
 - On launch, the app loads the list of Pokemons from the API.
