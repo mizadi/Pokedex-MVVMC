@@ -32,8 +32,12 @@ class PokedexCoordinator: Coordinator {
     }
 
     func showDetails(for name: String) {
-        let detailsVM = PokemonDetailsViewModel(service: PokemonApiService(session: .shared), pokemonName: name)
-        let detailsVC  = UIStoryboard(name: "PokemonDetails", bundle: nil).instantiateInitialViewController() as! PokemonDetailsViewController
+        let api = PokemonApiService(session: .shared)
+        let cache = FilePokemonCache()
+        let repository = DefaultPokemonRepository(api: api, cache: cache)
+        let detailsVM = PokemonDetailsViewModel(repository: repository, pokemonName: name)
+
+        let detailsVC = UIStoryboard(name: "PokemonDetails", bundle: nil).instantiateInitialViewController() as! PokemonDetailsViewController
         detailsVC.viewModel = detailsVM
         navigationController.pushViewController(detailsVC, animated: true)
     }

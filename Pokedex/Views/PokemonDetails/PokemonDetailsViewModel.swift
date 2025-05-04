@@ -6,22 +6,22 @@
 //
 
 class PokemonDetailsViewModel {
-    private let service: PokemonApiServiceProtocol
-    private let pokemonName: String
+    private let repository: PokemonRepository
+    let pokemonName: String
 
-    var pokemon: PokemonDetails? // Your model
+    var pokemon: PokemonDetails?
     var onDataUpdate: (() -> Void)?
     var onError: ((Error) -> Void)?
 
-    init(service: PokemonApiServiceProtocol, pokemonName: String) {
-        self.service = service
+    init(repository: PokemonRepository, pokemonName: String) {
+        self.repository = repository
         self.pokemonName = pokemonName
     }
 
     func fetchDetails() {
         Task {
             do {
-                let result = try await service.fetchPokemonDetails(name: pokemonName)
+                let result = try await repository.getPokemonDetails(name: pokemonName)
                 self.pokemon = result
                 onDataUpdate?()
             } catch {
@@ -30,3 +30,4 @@ class PokemonDetailsViewModel {
         }
     }
 }
+

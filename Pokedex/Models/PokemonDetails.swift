@@ -7,25 +7,25 @@
 
 import Foundation
 
-class PokemonDetails: Decodable {
+class PokemonDetails: Codable {
     let id: Int
     let name: String
     let sprites: Sprites
     let abilities: [AbilityEntry]
     let types: [TypeEntry]
 
-    struct Sprites: Decodable {
+    struct Sprites: Codable {
         let front_default: String?
         let other: OtherSprites?
 
-        struct OtherSprites: Decodable {
+        struct OtherSprites: Codable {
             let officialArtwork: OfficialArtWork?
 
             enum CodingKeys: String, CodingKey {
                 case officialArtwork = "official-artwork"
             }
 
-            struct OfficialArtWork: Decodable {
+            struct OfficialArtWork: Codable {
                 let front_default: String
             }
         }
@@ -36,17 +36,17 @@ class PokemonDetails: Decodable {
         }
     }
 
-    struct TypeEntry: Decodable {
+    struct TypeEntry: Codable {
         let slot: Int
         let type: NamedAPIResource
     }
 
-    struct AbilityEntry: Decodable {
+    struct AbilityEntry: Codable {
         let ability: NamedAPIResource
         let is_hidden: Bool
     }
 
-    struct NamedAPIResource: Decodable {
+    struct NamedAPIResource: Codable {
         let name: String
         let url: String
     }

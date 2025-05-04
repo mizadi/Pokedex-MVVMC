@@ -32,8 +32,13 @@ class PokemonDetailsViewController: UIViewController {
 
     func updateUI() {
         guard let pokemon = viewModel.pokemon else { return }
-        lbMain.text = pokemon.name
-        guard let spriteURL = URL(string: pokemon.sprites.front_default!) else { return }
-        ivMain.sd_setImage(with: spriteURL)
+        lbMain.text = pokemon.name.capitalized
+
+        if let spriteURLString = pokemon.sprites.front_default,
+           let spriteURL = URL(string: spriteURLString) {
+            ivMain.sd_setImage(with: spriteURL)
+        } else {
+            ivMain.image = UIImage(named: "placeholder")
+        }
     }
 }
